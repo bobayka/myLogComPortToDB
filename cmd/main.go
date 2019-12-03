@@ -1,18 +1,20 @@
 package main
 
 import (
+	"flag"
 	"fmt"
-	"github.com/bobayka/myLogComPortToDB/internal/comPort"
-	"github.com/bobayka/myLogComPortToDB/internal/domains"
-	"github.com/bobayka/myLogComPortToDB/internal/postgres"
-	"github.com/bobayka/myLogComPortToDB/internal/services"
 	_ "github.com/lib/pq"
 	"github.com/tarm/serial"
 	"log"
+	"myLogComPortToDB/internal/comPort"
+	"myLogComPortToDB/internal/domains"
+	"myLogComPortToDB/internal/postgres"
+	"myLogComPortToDB/internal/services"
 	"time"
 )
 
 func main() {
+
 	db, err := postgres.PGInit("localhost", 5432, "bobayka", "12345", "RubikonDatabase")
 	if err != nil {
 		log.Fatalf("pginit: %s", err)
@@ -22,7 +24,12 @@ func main() {
 		log.Fatalf("error in creation usersstorage: %s", err)
 	}
 	defer storage.Close()
-	c := &serial.Config{Name: "COM5", Baud: 115200}
+	var comName string
+	var baudrate int
+	flag.StringVar(&comName, "com", "5", "name of input file")
+	flag.IntVar(&baudrate, "baud", 38400, "baudrate")
+	flag.Parse()
+	c := &serial.Config{Name: comName, Baud: baudrate}
 	s, err := serial.OpenPort(c)
 	if err != nil {
 		log.Fatalf("Cant open port: %s", err)

@@ -2,11 +2,10 @@ package comPort
 
 import (
 	"context"
-	"fmt"
-	"github.com/bobayka/myLogComPortToDB/internal/myError"
 	"github.com/pkg/errors"
 	"github.com/tarm/serial"
 	"log"
+	"myLogComPortToDB/internal/myError"
 	"strings"
 	"time"
 )
@@ -16,7 +15,7 @@ const dimension = 6
 
 func ReadComPort(ch chan []string, port *serial.Port, timeout time.Duration) { //функция не доделана
 	for {
-		if err := readString(ch, port, timeout); err != nil {
+		if err := readLine(ch, port, timeout); err != nil {
 			log.Fatalf("can't read string: %s", err)
 		}
 	}
@@ -29,7 +28,7 @@ func WriteToComPort(port *serial.Port, msg string) {
 	}
 }
 
-func readString(ch chan []string, port *serial.Port, timeout time.Duration) error {
+func readLine(ch chan []string, port *serial.Port, timeout time.Duration) error {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 	matchWholeLine := make([]string, 1)
@@ -46,7 +45,7 @@ func readString(ch chan []string, port *serial.Port, timeout time.Duration) erro
 			cont = append(cont, buf...)
 			matchWholeLine = newLine.FindStringSubmatch(string(cont))
 			if matchWholeLine != nil {
-				fmt.Printf("Cont: %+v\n", string(cont))
+				//fmt.Printf("Cont: %+v\n", string(cont))
 				matchParam = strings.Split(matchWholeLine[1], ",")
 				break
 			}

@@ -1,9 +1,9 @@
 package services
 
 import (
-	"github.com/bobayka/myLogComPortToDB/internal/domains"
-	"github.com/bobayka/myLogComPortToDB/internal/postgres"
 	"github.com/pkg/errors"
+	"myLogComPortToDB/internal/domains"
+	"myLogComPortToDB/internal/postgres"
 )
 
 type WriteDataService struct {
