@@ -2,8 +2,8 @@ package postgres
 
 import (
 	"database/sql"
+	"github.com/myLogComPortToDB/internal/domains"
 	"github.com/pkg/errors"
-	"myLogComPortToDB/internal/domains"
 )
 
 const (

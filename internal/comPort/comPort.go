@@ -2,10 +2,10 @@ package comPort
 
 import (
 	"context"
+	"github.com/myLogComPortToDB/internal/myError"
 	"github.com/pkg/errors"
 	"github.com/tarm/serial"
 	"log"
-	"myLogComPortToDB/internal/myError"
 	"strings"
 	"time"
 )

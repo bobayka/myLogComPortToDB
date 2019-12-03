@@ -4,12 +4,12 @@ import (
 	"flag"
 	"fmt"
 	_ "github.com/lib/pq"
+	"github.com/myLogComPortToDB/internal/comPort"
+	"github.com/myLogComPortToDB/internal/domains"
+	"github.com/myLogComPortToDB/internal/postgres"
+	"github.com/myLogComPortToDB/internal/services"
 	"github.com/tarm/serial"
 	"log"
-	"myLogComPortToDB/internal/comPort"
-	"myLogComPortToDB/internal/domains"
-	"myLogComPortToDB/internal/postgres"
-	"myLogComPortToDB/internal/services"
 	"time"
 )
 
