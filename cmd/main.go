@@ -15,7 +15,7 @@ import (
 
 func main() {
 
-	db, err := postgres.PGInit("localhost", 5432, "bobayka", "12345", "RubikonDatabase")
+	db, err := postgres.PGInit("localhost", 5432, "Ваше имя", "12345", "RubikonDatabase")
 	if err != nil {
 		log.Fatalf("pginit: %s", err)
 	}

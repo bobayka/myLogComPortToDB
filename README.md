@@ -5,4 +5,4 @@
     Инструкция по восстновлению: 
     https://o7planning.org/ru/11913/backup-and-restore-postgres-database-with-pgadmin
     3. Настроить GOPATH, установить её на .../Golang в этом архиве
-    
+    4. Запустить go run main.go -com (число) -baud (число) 
